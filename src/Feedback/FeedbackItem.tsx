@@ -5,26 +5,22 @@ type FeedbackItemProps = {
 };
 
 export default function FeedbackItem({ feedbackItem }: FeedbackItemProps) {
-  console.log(feedbackItem);
   return (
-    <li className="feedback">
+    <li className="feedback" key={feedbackItem.id}>
       <button>
-        <span>100</span>
+        <span>{feedbackItem.upvoteCount}</span>
       </button>
 
       <div>
-        <p>N</p>
+        <p>{feedbackItem.badgeLetter}</p>
       </div>
 
       <div>
-        <p>Neftlix</p>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non quod vel
-          iste id voluptatem cum ea provident voluptatum, culpa qui.
-        </p>
+        <p>{feedbackItem.company}</p>
+        <p>{feedbackItem.text}</p>
       </div>
 
-      <p>4d</p>
+      <p>{feedbackItem.daysAgo}d</p>
     </li>
   );
 }
