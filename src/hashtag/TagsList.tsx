@@ -11,7 +11,11 @@ function TagsList() {
   return (
     <ul className="hashtags">
       {companyList().map((company) => (
-        <TagItem company={company} key={company} setCompanySelect={setCompanySelect} />
+        <TagItem
+          company={company}
+          key={company}
+          setCompanySelect={setCompanySelect}
+        />
       ))}
     </ul>
   );

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Container from "./layout/Container";
-import Footer from "./layout/Footer";
+
 import TagsList from "./hashtag/TagsList";
 import { useFeedbackItemsStore } from "./stores/feedbackItemsStore";
 
@@ -13,7 +13,6 @@ function App() {
 
   return (
     <div className="app">
-      <Footer />
       <Container />
       <TagsList />
     </div>
