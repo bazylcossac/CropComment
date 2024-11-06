@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useFeedbackItemsStore } from "../stores/feedbackItemsStore";
 import TagItem from "./TagItem";
 function TagsList() {
