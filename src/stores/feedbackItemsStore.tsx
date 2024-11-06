@@ -1,7 +1,5 @@
 import { create } from "zustand";
 import { TFeedbackItem } from "../lib/types";
-import { nanoid } from "nanoid";
-import FeedbackItem from "../Feedback/FeedbackItem";
 
 type feedbackStore = {
   feedbackItems: TFeedbackItem[];

@@ -8,18 +8,16 @@ function FeedbackList() {
   const selectedCompnay = useFeedbackItemsStore(
     (state) => state.selectedCompnay
   );
-  const filteredFeedbackItems = useFeedbackItemsStore(
+  const getFilteredFeedbackItems = useFeedbackItemsStore(
     (state) => state.getFilteredFeedbackItems
   );
   const isLoading = useFeedbackItemsStore((state) => state.isLoading);
   const errorMessage = useFeedbackItemsStore((state) => state.errorMessage);
-  console.log();
-
-
+  const filteredFeedbackItems = getFilteredFeedbackItems();
   return (
     <ol className="feedback-list">
       {isLoading && <Spinner />}
-      {filteredFeedbackItems().map((feedbackItem) => (
+      {filteredFeedbackItems.map((feedbackItem) => (
         <FeedbackItem key={feedbackItem.id} feedbackItem={feedbackItem} />
       ))}
     </ol>
