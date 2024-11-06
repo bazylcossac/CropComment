@@ -1,11 +1,12 @@
 type TagItemProps = {
   company: string;
+  setCompanySelect: (companyName: string) => void;
 };
 
-function TagItem({ company }: TagItemProps) {
+function TagItem({ company, setCompanySelect }: TagItemProps) {
   return (
     <li key={company}>
-      <button>{company}</button>
+      <button onClick={() => setCompanySelect(company)}>{company}</button>
     </li>
   );
 }

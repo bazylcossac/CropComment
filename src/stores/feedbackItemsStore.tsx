@@ -1,20 +1,25 @@
 import { create } from "zustand";
 import { TFeedbackItem } from "../lib/types";
 import { nanoid } from "nanoid";
+import FeedbackItem from "../Feedback/FeedbackItem";
 
 type feedbackStore = {
   feedbackItems: TFeedbackItem[];
   isLoading: boolean;
   errorMessage: string;
+  selectedCompnay: string;
   getFeedback: () => Promise<void>;
   getCompanyTags: () => string[];
   addPost: (text: string) => Promise<void>;
+  setCompanySelect: (companyName: string) => void;
+  getFilteredFeedbackItems: () => TFeedbackItem[];
 };
 
 export const useFeedbackItemsStore = create<feedbackStore>((set, get) => ({
   feedbackItems: [],
   isLoading: false,
   errorMessage: "",
+  selectedCompnay: "",
 
   getFeedback: async () => {
     set(() => ({ isLoading: true }));
@@ -23,7 +28,7 @@ export const useFeedbackItemsStore = create<feedbackStore>((set, get) => ({
         "https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks"
       );
       const data = await response.json();
-      set(() => ({ feedbackItems: data.feedbacks.reverse() }));
+      set(() => ({ feedbackItems: data.feedbacks }));
       set(() => ({ isLoading: false }));
     } catch (error) {
       set(() => ({ errorMessage: "Error, try again later" }));
@@ -66,5 +71,16 @@ export const useFeedbackItemsStore = create<feedbackStore>((set, get) => ({
     } catch (error) {
       set(() => ({ errorMessage: "Something went wrong" }));
     }
+  },
+  setCompanySelect: (companyName: string) => {
+    set(() => ({ selectedCompnay: companyName }));
+  },
+  getFilteredFeedbackItems: () => {
+    const state = get();
+    return state.selectedCompnay
+      ? state.feedbackItems.filter(
+          (post) => post.company === state.selectedCompnay
+        )
+      : state.feedbackItems;
   },
 }));
